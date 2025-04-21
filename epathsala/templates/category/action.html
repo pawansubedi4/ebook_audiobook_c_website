@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .section {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+    <link rel="stylesheet" href="static/elist1.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/style123.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>E-Pathsala</h1>
+        <nav>
+            <a href="home">Home</a>
+            <a href="uploadm">Upload Ebook</a>
+            <a href="uploadaudiobook">Upload Audiobook</a>
+            <a href="index">logout</a>
+            <a href="contact">Contact us</a>
+
+        </nav>
+    </header>
+    <div class="container">
+        <!-- Ebooks Section -->
+        <div class="section">
+            <h2>Ebooks Available</h2>
+            <ul>
+                {% for ebook in ebooks %}
+                <li>
+                    <div class="book-thumbnail">
+                        <img src="media/{{ebook.image}}" alt="{{ ebook.name }}">
+                    </div>
+                    <div class="book-info">
+                        <span><strong>{{ ebook.name }}</strong></span><br>
+                        <h5>Author= {{ ebook.author }}</h5>
+                    </div>
+                    <div class="book-actions">
+                        <a href="{{ ebook.pdf.url }}" target="_blank" class="read-btn">
+                            <i class="fas fa-eye"></i> Read
+                        </a>
+                        <a href="{{ ebook.pdf.url }}" download class="download-btn">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+        <!-- Audiobooks Section -->
+        <div class="section">
+            <h2>Audiobooks Available</h2>
+            <ul>
+                {% for book in ebooks12 %}
+                <div class="book-entry">
+                    <div class="book-thumbnail">
+                        <img src="media/{{book.image}}" alt="{{ book.name }}">
+                    </div>
+                    <div class="book-info">
+                        <span><strong>{{ book.name }}</strong></span><br>
+                        <h5>Author: {{ book.author }}</h5>
+                    </div>
+                    <div class="audio-wrapper">
+                        <audio controls>
+                            <source src="{{ book.audio.url }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <a href="{{ book.audio.url }}" download class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+                {% endfor %}
+            </ul>
+
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 E-Pathsala</p>
+        <div class="social-links">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+</body>
+
+</html>

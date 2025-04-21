@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Books & Audiobooks</title>
+    <link rel="stylesheet" href="static/elist.css">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <body>
+        <header>
+          <h1>E-Pathsala</h1>
+          <nav>
+            <a href="index">Home</a>
+            <a href="accounts/login">Login</a>
+            <a href="signup">signup</a>
+          </nav>
+        </header>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .section {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Ebooks Section -->
+        <div class="section">
+            <h2>Ebooks Available</h2>
+            <ul>
+                {% for ebook in ebooks %}
+                <a href="/accounts/login">
+                    <li>
+                        <div class="book-thumbnail">
+                            <img src="media/{{ebook.image}}" alt="{{ ebook.name }}">
+                        </div>
+                        <div class="book-info">
+                            <span><strong>{{ ebook.name }}</strong></span><br>
+                            <h5>Author= {{ ebook.author }}</h5>
+                        </div>
+                    </li>
+                </a>
+                {% empty %}
+                <li>No eBooks available yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Audiobooks Section -->
+        <div class="section">
+            <h2>Audiobooks Available</h2>
+            <ul>
+                {% for ebook in ebooks12 %}
+                <a href="/accounts/login">
+                    <li>
+                        <div class="book-thumbnail">
+                            <img src="media/{{ebook.image}}" alt="{{ ebook.name }}">
+                        </div>
+                        <div class="book-info">
+                            <span><strong>{{ ebook.name }}</strong></span><br>
+                            <h5>Author= {{ ebook.author }}</h5>
+                        </div>
+                    </li>
+                </a>
+                {% empty %}
+                <li>No eBooks available yet.</li>
+                {% endfor %}
+            </ul>
+
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 E-Pathsala</p>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </footer>
+
+</body>
+
+</html>
